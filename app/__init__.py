@@ -6,6 +6,6 @@ def create_app():
     app.config.from_object(Config)
     
     from app.recommender import bp as recommender_bp
-    app.register_blueprint(recommender_bp)
+    app.register_blueprint(recommender_bp, url_prefix='/api')
     
     return app

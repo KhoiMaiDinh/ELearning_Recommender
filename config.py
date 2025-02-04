@@ -12,4 +12,5 @@ class Config:
     
     @staticmethod
     def get_connection_string():
-        return f'DRIVER={{ODBC Driver 17 for SQL Server}};SERVER={Config.DB_SERVER};DATABASE={Config.DB_DATABASE};UID={Config.DB_USERNAME};PWD={Config.DB_PASSWORD}'
+        # return f'DRIVER={{ODBC Driver 17 for SQL Server}};SERVER={Config.DB_SERVER};DATABASE={Config.DB_DATABASE};UID={Config.DB_USERNAME};PWD={Config.DB_PASSWORD}'
+        return f'DRIVER={{ODBC Driver 17 for SQL Server}};SERVER=167.99.74.197:1433;DATABASE=EventHubDB;UID=sa;PWD=@Admin123;Encrypt=no;TrustServerCertificate=no'
