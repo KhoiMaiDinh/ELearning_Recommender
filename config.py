@@ -4,13 +4,13 @@ import os
 load_dotenv()
 
 class Config:
-    SECRET_KEY = os.getenv('SECRET_KEY')
-    DB_SERVER = os.getenv('DB_SERVER')
-    DB_DATABASE = os.getenv('DB_DATABASE')
-    DB_USERNAME = os.getenv('DB_USERNAME')
-    DB_PASSWORD = os.getenv('DB_PASSWORD')
+    DB_HOST = os.getenv("DB_HOST", "localhost")
+    DB_PORT = os.getenv("DB_PORT", "5432")
+    DB_NAME = os.getenv("DB_NAME", "mydb")
+    DB_USER = os.getenv("DB_USERNAME", "myuser")
+    DB_PASSWORD = os.getenv("DB_PASSWORD", "mypassword")
     
     @staticmethod
     def get_connection_string():
-        # return f'DRIVER={{ODBC Driver 17 for SQL Server}};SERVER={Config.DB_SERVER};DATABASE={Config.DB_DATABASE};UID={Config.DB_USERNAME};PWD={Config.DB_PASSWORD}'
-        return f'DRIVER={{ODBC Driver 17 for SQL Server}};SERVER=167.99.74.197:1433;DATABASE=EventHubDB;UID=sa;PWD=@Admin123;Encrypt=no;TrustServerCertificate=no'
+        return f"postgresql+psycopg2://{Config.DB_USER}:{Config.DB_PASSWORD}@{Config.DB_HOST}:{Config.DB_PORT}/{Config.DB_NAME}"
+    
