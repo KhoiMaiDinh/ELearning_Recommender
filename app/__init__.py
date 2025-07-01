@@ -1,4 +1,4 @@
-from flask import Flask
+from flask import Flask, jsonify
 from config import Config
 from app.services.recommender import bp as recommender_bp
 from app.database import DatabaseManager
@@ -25,6 +25,9 @@ def create_app():
         
         # start_kafka_worker()
 
+    @app.route('/health')
+    def health_check():
+        return jsonify({"status": "healthy"}), 200
     @app.teardown_appcontext
     def shutdown_session(exception=None):
         app.extensions["db_manager"].dispose()

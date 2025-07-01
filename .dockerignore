@@ -1,8 +1,12 @@
-venv/
+.venv
 .git/
 .gitignore
-__pycache__/
+**/__pycache__
+*/__pycache__/
 *.pyc
 *.pyo
 *.pyd
 .env
+.env.*
+README.md
+app/sample_courses.json

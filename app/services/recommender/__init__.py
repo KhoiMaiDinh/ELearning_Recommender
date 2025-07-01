@@ -13,8 +13,9 @@ bp = Blueprint('recommender', __name__)
 def get_recommendations():
     recommender: CourseRecommender = current_app.extensions["recommender"]
     # Get course IDs from query parameter, e.g., ?courses=1,2,3
-    courses_param = request.args.get("courses", "")
-    course_ids = [int(cid) for cid in courses_param.split(",") if cid.strip().isdigit()]
+    courses_param = request.args.getlist("courses[]")  # or just "courses" depending on client format
+    course_ids = [cid for cid in courses_param if cid]
+    print(course_ids)
     k = int(request.args.get("top_k", 10))
     prediction = recommender.predict(course_ids, k)
     # Convert DataFrame to list of dicts for JSON response

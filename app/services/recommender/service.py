@@ -16,10 +16,10 @@ class CourseRecommender:
         self.recommender = TfidfRecommender(id_col='id', tokenization_method='scibert')
         self.cosine_sim = None
         self.df = None
-        self.user_interactions = {}  # Key: user_id, Value: List of interacted course_ids
+        self.user_interactions = {} 
         self.db_manager = db_manager
         self.clean_col = 'cleaned_text'
-        self.is_loaded = False  # Flag to check if data is loaded
+        self.is_loaded = False
 
         # Load recommender data once at server startup
         self._initialize_recommender()
@@ -56,8 +56,8 @@ class CourseRecommender:
 
     def load_data(self):
         # Try to load from database
-        # courses = self.get_candidate_courses()
         courses = None
+        courses = self.get_candidate_courses()
         if not courses:
             # Load sample data from JSON file if DB is empty
             sample_path = os.path.join(os.path.dirname(__file__), '../../sample_courses.json')
@@ -155,6 +155,7 @@ class CourseRecommender:
         """
         Predict top-k similar courses for a given list of course_ids using the recommender.
         """
+        print(self.df)
         if self.df is None or self.recommender.tfidf_matrix is None:
             # Load and fit if not already done
             self.reload()
