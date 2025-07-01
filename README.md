@@ -1,70 +1,69 @@
-# EventHub Recommender System
+# 📚 NovaLearn Course Recommender
 
-## Overview
-EventHub Recommender System is an intelligent event recommendation platform that suggests personalized events to users based on their preferences and historical interactions. The system utilizes collaborative filtering and content-based filtering techniques to provide accurate and relevant event recommendations.
+The **NovaLearn Course Recommender** is an algorithm-based, modular service that suggests personalized course recommendations to users based on their learning behavior, preferences, and historical activity. It is part of the broader [NovaLearn](https://github.com/KhoiMaiDinh/ELearning_BE) ecosystem, an e-learning platform.
 
-## Features
-- Personalized event recommendations
-- Content-based filtering
+<p align="center">
+  <img src="assets/banner.png" alt="NovaLearn Course Recommender" width="600"/>
+</p>
 
-## Technical Implementation
-The recommender system is implemented in `app/recommender/services.py` using the following algorithms:
+## 🔍 Features
 
-### Content-Based Filtering
-- TF-IDF vectorization for event descriptions
-- Category and tag-based matching
-- Feature extraction from event metadata
+-   🎯 **Personalized course recommendations**
+-   🧠 **Content-based filtering** using course metadata (title, tags, description)
+-   📊 **Flask API** endpoints for external communication with the NovaLearn web app
 
-## Dependencies
-- Python 3.8+
-- pandas
-- numpy
-- scikit-learn
-- scipy
-- FastAPI (for API endpoints)
-- SQLAlchemy (for database operations)
+## 🛠️ Tech Stack
 
-## Installation
-1. Create a virtual environment:
+-   **Python 3.10+**
+-   **Flask** — Web framework
+-   **scikit-learn** — Machine learning utilities (TF-IDF, vectorization)
+-   **SQLAlchemy** — ORM for PostgreSQL
+-   **pandas**, **numpy**, **scipy** — Data handling and math
+
+## 🧠 Recommendation Logic
+
+### ✅ Content-Based Filtering
+
+Implemented in [`app/recommender/services.py`](app/recommender/services.py):
+
+-   TF-IDF vectorization on course descriptions
+-   Cosine similarity between user interests and course vectors
+-   Tag and category matching
+-   Custom scoring based on rating, popularity, and recentness
+
+## 📦 Installation
 
 ```bash
+# Create virtual environment
 python -m venv venv
-source venv/bin/activate # On Mac/Linux
-venv\Scripts\activate # On Windows
-```
+source venv/bin/activate  # On macOS/Linux
+venv\Scripts\activate     # On Windows
 
-3. Install dependencies:
-
-```bash
+# Install dependencies
 pip install -r requirements.txt
 ```
 
-## Running the Application
-1. Set up environment variables:
+## ⚙️ Configuration
+
+Create a .env file based on .env.example:
 
 ```bash
-cp .env.example .env 
-# Edit .env file with your configuration
+cp .env.example .env
+# Then edit .env with your DB credentials and config
 ```
 
-2. Initialize the database:
+## 🏁 Running the Service
 
 ```bash
-python manage.py init_db
+# Ensure database is properly set up from NovaLearn main service first
+# Then start the Flask server
+flask run
 ```
 
-3. Start the application:
+## 🚀 Future Improvements
 
-```bash
-uvicorn app.main:app --reload
-```
+🔄 Add collaborative filtering (user-user and item-item)
 
-The application will be available at `http://localhost:8000`
+---
 
-This README template provides a comprehensive overview of your EventHub Recommender System. You should customize it by:
-1. Adding specific details about your implementation
-2. Updating the installation and running instructions based on your actual setup
-3. Adding any project-specific requirements or configurations
-4. Including actual contributor names and acknowledgments
-5. Adding any additional sections relevant to your project
-The template assumes certain technologies and structures - please modify it to match your actual project setup and requirements.
+> 💡 This is a submodule of the NovaLearn system. For full platform capabilities, see the main NovaLearn repo or contact [me](https://github.com/KhoiMaiDinh) for further help.

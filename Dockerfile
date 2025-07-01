@@ -1,6 +1,5 @@
 FROM python:3.11-slim
 
-# Cài đặt thư viện cần thiết và driver SQL Server
 RUN apt-get update && \
     apt-get install -y \
     unixodbc \
