@@ -10,3 +10,4 @@
 .env.*
 README.md
 app/sample_courses.json
+app/models
